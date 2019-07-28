@@ -49,6 +49,7 @@ const startText = 'Press F or click/tap the Flap button to fly!',
       endGameButtonText = 'Play again',
       tapButtonColor = 'rgba(255, 255, 0, 0.5)',
       releaseButtonColor = 'rgba(0, 0, 0, 0.0)';
+var currentText = startText;
 
 function preload() {
   // Bird images
@@ -134,7 +135,7 @@ function updateGameObjects() {
 
 function generateScreenSaver() {
   bird.draw();
-  showInstructions(startText);
+  showInstructions(currentText);
 }
 
 function checkCollision() {
@@ -174,7 +175,8 @@ function checkCollision() {
 }
 
 function endGame() {
-  showInstructions(endText);
+  currentText = endText;
+  showInstructions(currentText);
   flapButton.text = endGameButtonText;
   flapButton.onPress = resetGame;
   game_started = false;
@@ -188,6 +190,7 @@ function resetGame() {
   flapButton.color = releaseButtonColor;
   flapButton.text = startGameButtonText;
   flapButton.onPress = startGameButtonFunction;
+  currentText = startText;
 }
 
 function startGameButtonFunction() {
