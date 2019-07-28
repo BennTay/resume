@@ -197,3 +197,7 @@ a:hover, a:focus, a:active {
 #vid_details {
   cursor: pointer;
 }
+
+#flappybirdholder {
+  touch-action: manipulation;
+}

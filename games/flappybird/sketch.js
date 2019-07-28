@@ -52,16 +52,16 @@ const startText = 'Press F or click/tap the Flap button to fly!',
 
 function preload() {
   // Bird images
-  birdImg1 = loadImage('images/birdframe1.png');
-  birdImg2 = loadImage('images/birdframe2.png');
+  birdImg1 = loadImage('games/flappybird/images/birdframe1.png');
+  birdImg2 = loadImage('games/flappybird/images/birdframe2.png');
   bird.imgSprite = birdImg1;
 
   // Pipe images
-  topPipeImg = loadImage('images/toppipe.png');
-  bottomPipeImg = loadImage('images/bottompipe.png');
+  topPipeImg = loadImage('games/flappybird/images/toppipe.png');
+  bottomPipeImg = loadImage('games/flappybird/images/bottompipe.png');
 
   // Background image
-  backgroundImg = loadImage('images/bg.png');
+  backgroundImg = loadImage('games/flappybird/images/bg.png');
 }
 
 function setup() {
