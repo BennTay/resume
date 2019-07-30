@@ -175,7 +175,7 @@ function checkCollision() {
 }
 
 function endGame() {
-  currentText = endText;
+  currentText = endText + '\nYou scored ' + str(score) + ' points!';
   showInstructions(currentText);
   flapButton.text = endGameButtonText;
   flapButton.onPress = resetGame;
