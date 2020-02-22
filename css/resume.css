@@ -201,3 +201,7 @@ a:hover, a:focus, a:active {
 #flappybirdholder {
   touch-action: manipulation;
 }
+
+hr {
+  border: 1px solid black;
+}

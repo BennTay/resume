@@ -88,17 +88,17 @@
           <span class="text-primary">Tay</span>
         </h1>
         <!-- Address · Number · E-mails -->
-        <div class="subheading mb-5">Block 442, Fajar Road, Singapore 670442 <br>+65 9624 7425<br>
-          <a href="mailto:e0176080@u.nus.edu">e0176080@u.nus.edu</a>(NUS)<br>
-          <a href="mailto:benntayguobin@gmail.com">benntayguobin@gmail.com</a>(Work)<br>
+        <div class="subheading mb-5"> <!--Block 442, Fajar Road, Singapore 670442 <br>+65 9624 7425<br>-->
+          <a href="mailto:e0176080@u.nus.edu">e0176080@u.nus.edu</a> (NUS)<br>
+          <a href="mailto:benntayguobin@gmail.com">benntayguobin@gmail.com</a> (Work)<br>
           <a href="mailto:benntayguobin@hotmail.com">benntayguobin@hotmail.com</a> (Personal/Work)<br>
-          <a href="files/Benn%20Tay%20Guobin%20(Resume).pdf" target="_blank">Resume</a> <a href="files/Benn%20Tay%20Guobin%20(Resume).pdf" download="Benn Tay Guobin (Resume)">(Download)</a><br>
-          <a href="files/Benn%20Tay%20Guobin%20(Curriculum%20Vitae).pdf" target="_blank">Curriculum Vitae</a> <a href="files/Benn%20Tay%20Guobin%20(Curriculum%20Vitae).pdf" download="Benn Tay Guobin (Curriculum Vitae)">(Download)</a>
+          <!--<a href="files/Benn%20Tay%20Guobin%20(Resume).pdf" target="_blank">Resume</a> <a href="files/Benn%20Tay%20Guobin%20(Resume).pdf" download="Benn Tay Guobin (Resume)">(Download)</a><br>
+          <a href="files/Benn%20Tay%20Guobin%20(Curriculum%20Vitae).pdf" target="_blank">Curriculum Vitae</a> <a href="files/Benn%20Tay%20Guobin%20(Curriculum%20Vitae).pdf" download="Benn Tay Guobin (Curriculum Vitae)">(Download)</a>-->
         </div>
         <!-- Summary -->
-        <p class="lead mb-5">Programmer, Musician.<br>
+        <p class="lead mb-5" align="justify">Programmer, Musician.<br>
         A passionate learner who aspires to daily self-improvement. Seeking to enrich my knowledge of computer science through hands-on work in the industry.<br><br>
-        <em>Currently interning at Schneider Electric as a Software Engineer. Working to design and develop applications as well as other software solutions to help streamline warehouse processes, improve database storage systems and increase data visibility.</em>
+        <em>Currently interning at <a href="https://www.se.com/ww/en/">Schneider Electric</a> as a Software Engineer. Working to design and develop applications as well as other software solutions to help streamline warehouse processes, improve database storage systems and increase data visibility.</em>
         </p>
         <div class="social-icons">
           <a href="www.linkedin.com/in/benn-tay-1ba79017b" target="_blank">
@@ -173,17 +173,87 @@
           <div class="resume-content">
             <h3 class="mb-0">Software Programming Intern</h3>
             <div class="subheading mb-3">Schneider Electric</div>
-            <p>I was stationed at Schneider Electric's <a href="https://www.se.com/sg/en/work/support/hub-asia/">HubAsia Distribution Centre</a> to
-               help with improving the efficiency of warehouse processes. As the (solo) software engineer, I was given a number of projects involving
-               designing and developing software solutions, database migration as well as automation.
+            <p align="justify">
+               I was stationed at Schneider Electric's <a href="https://www.se.com/sg/en/work/support/hub-asia/">HubAsia Distribution Centre</a> to
+               help with improving the efficiency of warehouse processes. As the (solo) software engineer, I was given a number of projects which allowed me to learn
+               fullstack software development skills (through developing apps from scratch). This involved UI design/programming and SQL database deployment/integration,
+               both of which I had no prior experience with. However, I became comfortable with them after a month of simultaneous research and diving head first into the
+               projects.<br>
+               Listed below are some of the projects and responsiblities I picked up at Schneider Electric.
                <ul>
-                 <li>Put Away Scanning application</li>
-                 <p></p>
+                 <li><strong>Put Away Scanning desktop application</strong></li>
+                 <details>
+                   <p align="justify">
+                     <em><u>Background info</u></em><br>
+                     One of the warehouse processes is "Put Away", where inbound delivered goods are received and need to be recorded before being kept away. Part
+                     of this process involves scanning the barcodes on labels pasted on the packaging. This crosschecks with information in a database
+                     to see if the labels are correct. There are 5 such stations, each with its own computer and barcode scanner.<br>
+                     <em><u>Problem</u></em><br>
+                     The problem with this was that the interface being used by operators for barcode scanning was a makeshift app using excel and VBA,
+                     where one sheet acts as the main scanning page, another sheet contains the data for crosschecking, and another sheet records the
+                     scans conducted by operators. This means each of the 5 station computers needs its own copy of the excel file, resulting in 5 duplicates
+                     of the same crosschecking data, all of which need to be simultaneously updated whenever new data is available. Also, all the recorded data
+                     of barcode scans conducted had to be pooled from the 5 separate excel files and compiled in order to display statistics in Tableau. Lastly,
+                     excel files have a hard limit on the number of rows per sheet which limits the lifespan of this implementation.<br>
+                     <em><u>My solution</u></em><br>
+                     I extracted and migrated the data for label crosschecking into a proper database system (at first a local MySQL database, then to an AWS MySQL RDS
+                     instance once the company approved it). This way, all the scanning station computers could access the same centralized database for information.
+                     All the data for each scan conducted is also stored into the same database, and pooling is no longer necessary as Tableau can connect directly
+                     to the centralized database to generate live reports and statistics. Users' login credentials are also stored on the database instead of the previous
+                     excel sheets, improving security.<br>
+                     In order to interface with the database, I developed a desktop application to replace the excel files. This app provided the same barcode scanning
+                     functionality in addition to a few other requested features such as automatic updating of the crosscheck database, exporting scan records into an
+                     excel file for CSQ (Customer Satisfaction & Quality) personnel to check, as well as generic user management (adding & deleting of users) for admins.
+                   </p>
+                 </details>
+                 <li><strong>Auto E-mail Report bot</strong></li>
+                 <details>
+                   <p align="justify">
+                     <em><u>Background info</u></em><br>
+                     The thousands of barcode scans done during the put away process can result in varying statuses (CORRECT, INCORRECT, VISUAL CHECK). "INCORRECT" and
+                     "VISUAL CHECK" statuses imply that some issue is present which needs to be fixed, with various possible root causes for these issues.<br>
+                     <em><u>Problem</u></em><br>
+                     In order to stay updated as well as investigate these issues effectively, CSQ and management personnel require daily reports on the scans conducted.
+                     This includes a summary of the statuses encountered along with their root causes.<br>
+                     <em><u>My solution</u></em><br>
+                     I wrote a script which runs automatically every morning to send an e-mail to a list of mailees. This script connects to the database I created for the
+                     Put Away Scanning app to retrieve the relevant data, generate graphics (pareto charts, pivot tables, simple HTML tables) to display the information, and
+                     send the formatted e-mail to personnel.
+                   </p>
+                 </details>
+                 <li><strong>Wellness & Recreation Committee member (Sports Hub)</strong></li>
+                 <details>
+                   <p align="justify">
+                     As a member of the WRC Sports Hub, I worked with colleagues to plan and organise activities which encourage and provide opportunities for employees to
+                     have fun while exercising. We wanted to introduce a culture of fun and fitness, especially at our HubAsia office which had a warehouse environment where
+                     operators rarely have the chance to leave and participate in recreational activities.
+                   </p>
+                 </details>
+                 <li><strong>E-Idea Committee member</strong></li>
+                 <details>
+                   <p align="justify">
+                     We have an E-Idea programme where employees can submit any innovative ideas for improving any aspects of the workplace, such as safety, environmental-friendliness,
+                     productivity, etc. Every month and quarter, the best idea will be announced and the submitter will be rewarded. As part of the E-Idea committee, My fellow members
+                     and I would have monthly meetings to run through the submitted ideas together, analyze and award points to each idea, and decide on the winner for the month.
+                   </p>
+                 </details>
+                 <li><strong>Emcee for Chinese New Year celebration</strong></li>
+                 <details>
+                   <p align="justify">
+                     We hosted a Chinese New Year celebration for all employees at HubAsia which included a buffet as well as team games. I took up the role of emcee-ing to facilitate
+                     the flow of activities.
+                   </p>
+                 </details>
                </ul>
+               Working at Schneider Electric has been absolutely enriching and undoubtedly valuable to me. The amount of things I've learnt from this internship is astounding.
+               Whether it be the subtle details or large subjects, technical or soft skills, I was exposed to so much new knowledge and experience that I know I've improved
+               tremendously both as a programmer and as a person. Their well-structured internship programme, inviting culture, and willingness to place large responsibilities
+               and meaningful projects on the shoulders of us interns made for an incredibly memorable and educative experience. Especially with regards to the projects, seeing
+               my work grow and be actually deployed live into their daily production was extremely satisfying and gave me a great sense of achievement.
             </p>
           </div>
           <div class="resume-date text-md-right">
-            <span class="text-primary">02 January 2020 - Current (internship ends on 30 June 2020)</span>
+            <span class="text-primary">2 January 2020 - Current (internship ends on 30 June 2020)</span>
           </div>
         </div>
 
@@ -191,7 +261,7 @@
           <div class="resume-content">
             <h3 class="mb-0">Introductory Ukulele Workshop Instructor</h3>
             <div class="subheading mb-3">PitStop@YIH, NUS</div>
-            <p>I crafted a lesson plan for teaching beginners to play the ukulele, allowing students without to play recognizable songs within an hour. I used self-designed, visually-appealing slides and wrote intuitive song tabs to facilitate the lesson.</p>
+            <p align="justify">I crafted a lesson plan for teaching beginners to play the ukulele, allowing students without to play recognizable songs within an hour. I used self-designed, visually-appealing slides and wrote intuitive song tabs to facilitate the lesson.</p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">November 2018</span>
@@ -202,7 +272,7 @@
           <div class="resume-content">
             <h3 class="mb-0">Homework Teacher</h3>
             <div class="subheading mb-3">Knowledge Park Tuition and Student Care Centre</div>
-            <p>As a homework teacher, I guided students ranging from Primary 1 to Primary 6 in all their school subjects.</p>
+            <p align="justify">As a homework teacher, I guided students ranging from Primary 1 to Primary 6 in all their school subjects.</p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">January 2017</span>
@@ -213,7 +283,7 @@
           <div class="resume-content">
             <h3 class="mb-0">Tuition Teacher</h3>
             <div class="subheading mb-3">Tasek Jurong Limited Tuition</div>
-            <p>I taught students ranging from lower primary to upper secondary in their subjects of English, Mathematics and Science (including pure physics, chemistry and biology for the secondary school students).</p>
+            <p align="justify">I taught students ranging from lower primary to upper secondary in their subjects of English, Mathematics and Science (including pure physics, chemistry and biology for the secondary school students).</p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">July 2019</span>
@@ -226,7 +296,7 @@
           <div class="resume-content">
             <h3 class="mb-0">Hack and Roll 2019 (Hackathon)</h3>
             <div class="subheading mb-3">National University of Singapore</div>
-            <p>I teamed up with friends in this hackathon to create a top-down view multiplayer desktop maze game concept. <!-- Link to GitHub --></p>
+            <p align="justify">I teamed up with friends in this hackathon to create a top-down view multiplayer desktop maze game concept. <!-- Link to GitHub --></p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">2019</span>
@@ -237,7 +307,7 @@
           <div class="resume-content">
             <h3 class="mb-0">HackNTU 2019 (Hackathon)</h3>
             <div class="subheading mb-3">Nanyang Technological University</div>
-            <p>My team and I built a web-based drumming application using p5.js, targeted towards helping drummers gain a better sense of rhythm. <!-- Link to GitHub --></p>
+            <p align="justify">My team and I built a web-based drumming application using p5.js, targeted towards helping drummers gain a better sense of rhythm. <!-- Link to GitHub --></p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">2019</span>
@@ -248,7 +318,7 @@
           <div class="resume-content">
             <h3 class="mb-0">AngelHack 2019 (Hackathon)</h3>
             <div class="subheading mb-3">PSB Academy STEM Campus</div>
-            <p>My team and I built a web-based drumming application using p5.js, targeted towards helping drummers gain a better sense of rhythm. <!-- Link to GitHub --></p>
+            <p align="justify">My team and I built a web-based drumming application using p5.js, targeted towards helping drummers gain a better sense of rhythm. <!-- Link to GitHub --></p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">2019</span>
@@ -285,6 +355,7 @@
           <li>Python</li>
           <li>Java</li>
           <li>C</li>
+          <li>C++</li>
           <li>HTML</li>
           <li>CSS</li>
           <li>Javascript</li>
@@ -339,8 +410,16 @@
           -->
         </ul>
 
-        <div class="subheading mb-3">Software Engineering</div>
-        <p>I am familiar with software engineering design principles/patterns, practices (like quality assurance through unit testing) and paradigms (such as Scrum, sequential waterfall SDLC and iterative SDLC), having worked with a team on a >10,000 code base to produce a working and usable desktop application.</p>
+        <div class="subheading mb-3">Full Stack Software Development</div>
+        <p align="justify">
+          During my internship at Schneider Electric, I was in charge of designing and developing a functional desktop application to be used daily in live production environments.
+          Since I was the only software engineer, I became intimately familiar with every facet of development from beginning till end. Some things I learn include: UI design/programming
+          (to create a user-friendly interface), AWS MySQL database creation and integration (for all the apps running on computers throughout the warehouse to simultaneously store and retrieve
+          data), and defensive programming so as to minimize bugs in the app (which would be costly when used in production).<br>
+          Of course, I have worked with teams as well on software engineering projects in NUS and am able to communicate/work effectively with other developers to achieve our goals.
+          <!--I am familiar with software engineering design principles/patterns, practices (like quality assurance through unit testing) and paradigms
+          (such as Scrum, sequential waterfall SDLC and iterative SDLC), having worked with a team on a >10,000 code base to produce a working and usable desktop application.-->
+        </p>
 
         <!--
         <div class="subheading mb-3">Workflow</div>
@@ -371,7 +450,7 @@
         <p>Apart from being a web developer, I enjoy most of my time being outdoors. In the winter, I am an avid skier and novice ice climber. During the warmer months here in Colorado, I enjoy mountain biking, free climbing, and kayaking.</p>
         <p class="mb-0">When forced indoors, I follow a number of sci-fi and fantasy genre movies and television shows, I am an aspiring chef, and I spend a large amount of my free time exploring the latest technology advancements in the front-end web development world.</p>
         -->
-        <p>Apart from programming, I am a self-taught ukulele fingerstylist. My interest in the instrument resulted in me coming across ukulele virtuosos such as Jake Shimabukuro and Kalei Gamiao, whose performances ignited my passion and inspired me to learn to play like them. To date, I have performed multiple times (sometimes with a band but mostly solos) for events such as concerts and competitions, and I have also conducted and introductory workshop for people wishing to pick up the ukulele.<br>
+        <p align="justify">Apart from programming, I am a self-taught ukulele fingerstylist. My interest in the instrument resulted in me coming across ukulele virtuosos such as Jake Shimabukuro and Kalei Gamiao, whose performances ignited my passion and inspired me to learn to play like them. To date, I have performed multiple times (sometimes with a band but mostly solos) for events such as concerts and competitions, and I have also conducted and introductory workshop for people wishing to pick up the ukulele.<br>
         I seek to continue performing in public as well as teaching more lessons. I have also uploaded some song covers to YouTube and strive to upload more in future.</p>
         <aside>
           <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLDmk3z5UASu5aPc63lj3TT0Ty6z5A2V7I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -390,8 +469,10 @@
           <div class="resume-content">
             <h3 class="mb-0">Bintan Service Learning Trip</h3>
             <div class="subheading mb-3">Building Safe Water Gardens</div>
-            <div>Worked together with other undergraduates to construct safe water gardens to provide hygienic sanitation for local families. In addition to giving safe sanitation, the waste water is channeled to fertilize a garden where residents can grow their own produce for sale or consumption.<br>
-            On the last day, we also organized games and interaction sessions for children from a nearby orphanage.<br><br></div>
+            <div><p align="justify">
+              Worked together with other undergraduates to construct safe water gardens to provide hygienic sanitation for local families. In addition to giving safe sanitation, the waste water is channeled to fertilize a garden where residents can grow their own produce for sale or consumption.<br>
+              On the last day, we also organized games and interaction sessions for children from a nearby orphanage.</p><br>
+            </div>
             <aside><em>If you would like to help as well or learn more about this programme, visit <a href="https://safewatergardens.org/">Safe Water Gardens</a>.</em></aside>
           </div>
           <div class="resume-date text-md-right">
@@ -403,7 +484,9 @@
           <div class="resume-content">
             <h3 class="mb-0">Yogyakarta Service Learning Trip</h3>
             <div class="subheading mb-3">Helping Children in Need</div>
-            <div>We worked together to help construct an outdoor shelter for a nursery, as well as paint a wall mural for an orphanage. We also conducted lessons and cultural exchange activities to engage with the locals.</div>
+            <div><p align="justify">
+              We worked together to help construct an outdoor shelter for a nursery, as well as paint a wall mural for an orphanage. We also conducted lessons and cultural exchange activities to engage with the locals.</p>
+            </div>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">December 2013</span>
@@ -418,10 +501,10 @@
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="games">
       <div class="w-100">
         <h2 class="mb-5">Games</h2>
-        <p>Thanks for visiting and reading this page! If you made it this far and are finally bored, please entertain yourself here with some games I've coded. :)</p>
+        <p align="justify">Thanks for visiting and reading this page! If you made it this far and are finally bored, please entertain yourself here with some games I've coded. :)</p>
 
         <h3>Flapping Bird</h3>
-        <p>Built mainly using p5js (a Javascript library geared towards creating graphic and interactive experiences, and based on the principles of processing), I've attempted to clone the internationally sensational and ridiculously addictive game known as Flappy Bird.</p>
+        <p align="justify">Built mainly using p5js (a Javascript library geared towards creating graphic and interactive experiences, and based on the principles of processing), I've attempted to clone the internationally sensational and ridiculously addictive game known as Flappy Bird.</p>
         <div id="flappybird">
           <div id="flappybirdholder">
             <script language="javascript" type="text/javascript" src="games/flappybird/sketch.js"></script>
