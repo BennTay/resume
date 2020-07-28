@@ -202,6 +202,6 @@ a:hover, a:focus, a:active {
   touch-action: manipulation;
 }
 
-hr {
+hr.m-0 {
   border: 1px solid black;
 }
